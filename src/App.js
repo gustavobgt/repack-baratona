@@ -3,13 +3,59 @@ import {
   CardStyleInterpolators,
   createStackNavigator,
 } from '@react-navigation/stack';
-import React from 'react';
-import {SafeAreaView, StatusBar, useColorScheme} from 'react-native';
-import AnimTab1 from './bottomTab/AnimTab1';
-import AnimTab2 from './bottomTab/AnimTab2';
-import Home from './screens/Home';
+import React, {lazy, Suspense} from 'react';
+import {
+  SafeAreaView,
+  StatusBar,
+  useColorScheme,
+  View,
+  StyleSheet,
+} from 'react-native';
 import Colors from './constants/Colors';
-import {Provider} from 'react-native-paper';
+import {Provider, ActivityIndicator} from 'react-native-paper';
+
+const Home = lazy(() => import('./screens/Home'));
+const AnimTab1 = lazy(() => import('./bottomTab/AnimTab1'));
+const AnimTab2 = lazy(() => import('./bottomTab/AnimTab2'));
+
+const HomeScreen = ({navigation}) => {
+  return (
+    <Suspense
+      fallback={
+        <View style={styles.container}>
+          <ActivityIndicator />
+        </View>
+      }>
+      <Home navigation={navigation} />
+    </Suspense>
+  );
+};
+
+const AnimTab1Screen = () => {
+  return (
+    <Suspense
+      fallback={
+        <View style={styles.container}>
+          <ActivityIndicator />
+        </View>
+      }>
+      <AnimTab1 />
+    </Suspense>
+  );
+};
+
+const AnimTab2Screen = () => {
+  return (
+    <Suspense
+      fallback={
+        <View style={styles.container}>
+          <ActivityIndicator />
+        </View>
+      }>
+      <AnimTab2 />
+    </Suspense>
+  );
+};
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -48,13 +94,21 @@ const RootStack = () => {
     <Stack.Navigator screenOptions={options}>
       <Stack.Screen
         name="Home"
-        component={Home}
-        options={{title: 'React-Native Ui', headerShown: true}}
+        component={HomeScreen}
+        options={{title: 'Repack Baratona', headerShown: true}}
       />
-      <Stack.Screen name="Tab1" component={AnimTab1} />
-      <Stack.Screen name="Tab2" component={AnimTab2} />
+      <Stack.Screen name="Tab1" component={AnimTab1Screen} />
+      <Stack.Screen name="Tab2" component={AnimTab2Screen} />
     </Stack.Navigator>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});
 
 export default App;

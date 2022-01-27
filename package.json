@@ -6,6 +6,8 @@
     "a": "react-native run-android",
     "i": "react-native run-ios",
     "android": "react-native run-android",
+    "webpack-start": "react-native webpack-start",
+    "webpack-bundle": "react-native webpack-bundle",
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
@@ -34,13 +36,18 @@
   "devDependencies": {
     "@babel/core": "7.15.5",
     "@babel/runtime": "7.15.4",
+    "@callstack/repack": "^2.5.2",
     "@react-native-community/eslint-config": "2.0.0",
     "babel-jest": "26.6.3",
+    "babel-loader": "^8.2.3",
     "eslint": "7.14.0",
     "jest": "26.6.3",
     "metro-react-native-babel-preset": "0.66.2",
+    "react-native-bundle-visualizer": "^3.1.1",
     "react-native-codegen": "^0.0.7",
-    "react-test-renderer": "17.0.2"
+    "react-test-renderer": "17.0.2",
+    "terser-webpack-plugin": "^5.3.0",
+    "webpack": "^5.67.0"
   },
   "jest": {
     "preset": "react-native"

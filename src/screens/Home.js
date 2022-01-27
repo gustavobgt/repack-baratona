@@ -1,6 +1,6 @@
 import React from 'react';
 import {List} from 'react-native-paper';
-import {StyleSheet, View} from 'react-native';
+import {View} from 'react-native';
 
 const Home = ({navigation}) => {
   const navigate = route => navigation.navigate(route);
@@ -17,5 +17,3 @@ const Home = ({navigation}) => {
 };
 
 export default Home;
-
-const styles = StyleSheet.create({});
