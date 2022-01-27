@@ -1,34 +1,15 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-
-import { NavigationContainer } from '@react-navigation/native';
-import { CardStyleInterpolators, createStackNavigator } from '@react-navigation/stack';
-import React from 'react';
+import {NavigationContainer} from '@react-navigation/native';
 import {
-  SafeAreaView,
-  StatusBar,
-  useColorScheme,
-} from 'react-native';
+  CardStyleInterpolators,
+  createStackNavigator,
+} from '@react-navigation/stack';
+import React from 'react';
+import {SafeAreaView, StatusBar, useColorScheme} from 'react-native';
 import AnimTab1 from './bottomTab/AnimTab1';
 import AnimTab2 from './bottomTab/AnimTab2';
-import AnimTab3 from './bottomTab/AnimTab3';
 import Home from './screens/Home';
-import Tab4 from './bottomTab/Tab4';
-import Tab5 from './bottomTab/Tab5';
 import Colors from './constants/Colors';
-import ContactList from './screens/ContactList';
-import ListScreen from './screens/ListScreen';
-import { Provider } from 'react-native-paper';
-import Screen from './screens/Screen';
-import ProductsList from './screens/shop/ProductsList';
-import DetailsScreen from './screens/shop/DetailsScreen';
-import { createSharedElementStackNavigator } from 'react-navigation-shared-element';
-import ListScreenDark from './screens/ListScreenDark';
+import {Provider} from 'react-native-paper';
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -41,8 +22,10 @@ const App = () => {
   return (
     <Provider>
       <SafeAreaView style={backgroundStyle}>
-        <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-          backgroundColor={Colors.white} />
+        <StatusBar
+          barStyle={isDarkMode ? 'light-content' : 'dark-content'}
+          backgroundColor={Colors.white}
+        />
         <NavigationContainer>
           <RootStack />
         </NavigationContainer>
@@ -56,32 +39,22 @@ const options = {
   gestureDirection: 'horizontal',
   cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
   headerShown: false,
-}
+};
 
-const Stack = createSharedElementStackNavigator();
+const Stack = createStackNavigator();
 
 const RootStack = () => {
   return (
     <Stack.Navigator screenOptions={options}>
-      <Stack.Screen name="Home" component={Home}
-        options={{ title: 'React-Native Ui', headerShown: true }} />
+      <Stack.Screen
+        name="Home"
+        component={Home}
+        options={{title: 'React-Native Ui', headerShown: true}}
+      />
       <Stack.Screen name="Tab1" component={AnimTab1} />
       <Stack.Screen name="Tab2" component={AnimTab2} />
-      <Stack.Screen name="Tab3" component={AnimTab3} />
-      <Stack.Screen name="Tab4" component={Tab4} />
-      <Stack.Screen name="Tab5" component={Tab5} />
-      <Stack.Screen name="Contacts" component={ContactList} />
-      <Stack.Screen name="List" component={ListScreen} />
-      <Stack.Screen name="DarkList" component={ListScreenDark} />
-      <Stack.Screen name="Screen" component={Screen} />
-      <Stack.Screen name="Products" component={ProductsList} />
-      <Stack.Screen name="Details" component={DetailsScreen}
-        options={{
-          cardStyleInterpolator: CardStyleInterpolators.forVerticalIOS,
-        }}
-      />
     </Stack.Navigator>
-  )
-}
+  );
+};
 
 export default App;
